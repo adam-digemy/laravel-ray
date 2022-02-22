@@ -13,7 +13,6 @@ use Illuminate\Support\Facades\Facade;
 use Illuminate\Support\Str;
 use Spatie\Backtrace\Backtrace;
 use Spatie\Backtrace\Frame;
-use Spatie\LaravelRay\DumpRecorder\DumpRecorder;
 use Spatie\LaravelRay\Watchers\CacheWatcher;
 use Spatie\LaravelRay\Watchers\QueryWatcher;
 use Spatie\LaravelRay\Watchers\ViewWatcher;
@@ -81,10 +80,6 @@ class OriginFactory
 
         if ($rayFrame->class === ViewWatcher::class) {
             return $this->findFrameForView($frames, $indexOfRay);
-        }
-
-        if ($rayFrame->class === DumpRecorder::class) {
-            return $this->findFrameForDump($frames);
         }
 
         if ($rayFrame->class === CacheWatcher::class) {
