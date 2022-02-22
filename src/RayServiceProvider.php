@@ -8,7 +8,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Stringable;
 use Spatie\LaravelRay\Commands\PublishConfigCommand;
 use Spatie\LaravelRay\Payloads\MailablePayload;
 use Spatie\LaravelRay\Payloads\ModelPayload;
@@ -189,15 +188,6 @@ class RayServiceProvider extends ServiceProvider
             $description === ''
                 ? ray($this->items)
                 : ray($description, $this->items);
-
-            return $this;
-        });
-
-
-        Stringable::macro('ray', function (string $description = '') {
-            $description === ''
-                ? ray($this->value)
-                : ray($description, $this->value);
 
             return $this;
         });
