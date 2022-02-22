@@ -2,7 +2,6 @@
 
 namespace Spatie\LaravelRay\Payloads;
 
-use Illuminate\Testing\TestResponse;
 use Spatie\Ray\ArgumentConverter;
 use Spatie\Ray\Payloads\Payload;
 
@@ -19,18 +18,6 @@ class ResponsePayload extends Payload
 
     /** @var array|null */
     protected $json;
-
-    public static function fromTestResponse(TestResponse $testResponse): self
-    {
-        return new self(
-            $testResponse->getStatusCode(),
-            $testResponse->headers->all(),
-            $testResponse->content(),
-            $json = rescue(function () use ($testResponse) {
-                return $testResponse->json();
-            }, null, false)
-        );
-    }
 
     public function __construct(int $statusCode, array $headers, string $content, ?array $json = null)
     {

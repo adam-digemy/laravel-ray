@@ -13,7 +13,6 @@ use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Testing\Fakes\MailFake;
-use Illuminate\Testing\TestResponse;
 use Illuminate\View\View;
 use Spatie\LaravelRay\Payloads\EnvironmentPayload;
 use Spatie\LaravelRay\Payloads\ExecutedQueryPayload;
@@ -452,13 +451,6 @@ class Ray extends BaseRay
         }
 
         return $rayProxy;
-    }
-
-    public function testResponse(TestResponse $testResponse)
-    {
-        $payload = ResponsePayload::fromTestResponse($testResponse);
-
-        $this->sendRequest($payload);
     }
 
     protected function requestWatcher(): RequestWatcher
